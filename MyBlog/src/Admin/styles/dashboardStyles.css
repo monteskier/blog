@@ -7,6 +7,9 @@ body {
 a {
 	text-decoration: none;
 }
+main{
+	margin-top:50px;
+}
 
 /* --- --- BARRA LATERAL --- --- */
 .barra-lateral {
@@ -207,6 +210,17 @@ a {
 .main .comentarios .comentario .botones .eliminar:hover {background: #c9302c;}
 .main .comentarios .comentario .botones .bloquear:hover {color: #fff; background: #acacac;}
 
+
+/*--- NavBarApp ---*/
+
+nav.navbar{
+	
+	
+	font-family: 'Roboto', sans-serif;
+
+	
+	
+}
 
 /* --- MEDIAQUERIES ---  */
 /* Dispositivo xs */

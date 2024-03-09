@@ -1,8 +1,14 @@
 export const PostForms = () => {
   return (
     <form action="">
-      <input type="text" placeholder="Titulo de la entrada" />
-      <textarea placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!"></textarea>
+      <div className="form-floating mb-3">
+        <input type="text" className="form-control" id="title" name="title" placeholder="Titulo de la entrada" />
+        <label  htmlFor="title">Titulo</label>
+      </div>
+      <div className="form-floating mb-3">
+        <textarea className="form-control" name="description" id="description" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!"></textarea>
+        <label  htmlFor="description">Entrada</label>
+      </div>
       <div className="d-flex justify-content-end">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-fill" viewBox="0 0 16 16">
