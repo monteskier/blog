@@ -20,6 +20,13 @@ export const SelectedPostsPage = () => {
     <DashboardLayout options={ {'posts':state.posts } } title='Entradas' >
       <PostSelectedView categories={state.categories}>
       </PostSelectedView>
+
+      {/* todo: que solo salga el boton de add en casa no NothingSelectedView */}
+      <div className="">
+        <button className="icono add-post d-inline-flex text-center align-items-center justify-content-center">
+          +
+        </button>
+      </div>
     </DashboardLayout>
     
   )

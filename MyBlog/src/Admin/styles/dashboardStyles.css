@@ -215,14 +215,22 @@ main{
 /*--- NavBarApp ---*/
 
 nav.navbar{
-	
-	
-	font-family: 'Roboto', sans-serif;
-
-	
-	
+	font-family: 'Roboto', sans-serif;	
 }
+	/*--- Buton Add new post ---*/
 
+	.main button.icono.add-post{
+		position: fixed;
+		right: 50px;
+		bottom: 50px;
+		padding:10px;
+		border-radius: 100%;
+		width: 100px;
+		height: 100px;
+		font-size: 50px;
+	
+	
+	}
 /* --- MEDIAQUERIES ---  */
 /* Dispositivo xs */
 @media screen and (max-width: 320px) {}
