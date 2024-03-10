@@ -1,10 +1,11 @@
 import {PostForms} from '../components/index'
+import { ImgeGallery } from '../components/index'
 
-export const PostSelectedView = () => {
+export const PostSelectedView = ({categories}=[]) => {
   return (
     <div>
-      <h4>Entradas</h4>
-      <PostForms></PostForms>
+      <PostForms categories={categories}></PostForms>
+      <ImgeGallery></ImgeGallery>
     </div>
   )
 }

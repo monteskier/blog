@@ -17,8 +17,8 @@ export const SelectedPostsPage = () => {
   const [ state ] = useReducer(BlogReducer, initialState);
 
   return (
-    <DashboardLayout options={ {'posts':state.posts } } >
-      <PostSelectedView>
+    <DashboardLayout options={ {'posts':state.posts } } title='Entradas' >
+      <PostSelectedView categories={state.categories}>
       </PostSelectedView>
     </DashboardLayout>
     

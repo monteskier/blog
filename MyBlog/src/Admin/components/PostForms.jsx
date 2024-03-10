@@ -1,6 +1,6 @@
-export const PostForms = () => {
+export const PostForms = ({categories}=[]) => {
   return (
-    <form action="">
+    <form action="" className="nueva_entrada">
       <div className="row">
         <div className="col-12">				
           <div className="d-flex gap-2 justify-content-end mb-3">
@@ -15,8 +15,18 @@ export const PostForms = () => {
           <label  htmlFor="title">Titulo</label>
         </div>
         <div className="form-floating mb-3">
-          <textarea className="form-control" name="description" id="description" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!"></textarea>
-          <label  htmlFor="description">Entrada</label>
+          <select className="form-select" name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
+            {categories.map( category =>{
+              return(
+                <option key={category.id} value={category.id}>{category.title}</option>
+              );
+            })}
+          </select>
+          <label  htmlFor="category">Categoria</label>
+        </div>
+        <div className="form-floating mb-3">
+          <textarea className="form-control" id="description" name="description" placeholder="Contenido de la entrada" />
+          <label  htmlFor="description">Contenido</label>
         </div>
         <div className="d-flex justify-content-end">
           <button>

@@ -70,7 +70,7 @@ main{
 	margin-bottom: 20px;
 }
 
-.main .widget {
+.main .option_selected {
 	margin-bottom: 40px;
 }
 
@@ -78,6 +78,7 @@ main{
 .main .nueva_entrada form input[type="text"],
 .main .nueva_entrada form textarea {
 	width: 100%;
+	height: 50px;
 	padding: 10px;
 	margin-bottom: 20px;
 	font-family: 'Open Sans', sans-serif;
