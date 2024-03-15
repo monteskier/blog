@@ -1,27 +1,20 @@
-import { useReducer } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import{selectCategory} from '../store/slices/blog';
+// import { useReducer } from 'react'
 import {CarrouselApp, FeaturedPostApp, NavApp, NavBarApp} from './components'
-import { images } from './helpers/images'
-import { BlogReducer } from './BlogReducer';
-import { posts, categories } from "./helpers/blogPost";
-
-const initialState={
-  selectCategory:0,
-  posts,
-  categories
-}
+// import { images } from './helpers/images'
+// import { BlogReducer } from './BlogReducer';
 
 
 export const MyBlogApp = () => {
-  const [ state, dispatch ] = useReducer(BlogReducer, initialState);
-
-  const handleSelectCategory = ({target})=>{
-    const id = target.value;
-    console.log(id);
-    dispatch({
-      payload:parseInt(id),
-      type:'BLOG_CATEGORY'
-    });
+  // const [ state, dispatch ] = useReducer(BlogReducer, initialState);
+  const {images, posts, categories} = useSelector( state => state.blog);
+  const dispatch = useDispatch();
+  const handleSelectCategory = (e)=>{
+    console.log(e.target.value)
+    dispatch(selectCategory(e.target.value));
   }
+
   return (
     <>
       <header>
@@ -30,7 +23,7 @@ export const MyBlogApp = () => {
         <NavApp onSelectCategory={handleSelectCategory} categories={categories}></NavApp>
       </header>
       <main>
-        <FeaturedPostApp posts={state.posts} categories={categories}></FeaturedPostApp>
+        <FeaturedPostApp posts={posts} categories={categories}></FeaturedPostApp>
       </main>
     </>
   )
