@@ -28,7 +28,7 @@ export const RouterApp = () => {
         :<>          
           <Route path='/*' element={<RoutesMyBlogApp />} />
           <Route path='/auth/*' element={<AuthRouter/>} />
-          <Route path='/' element={<Navigate to='/*'></Navigate>}></Route>
+          <Route path='/admin/*' element={<Navigate to='/'></Navigate>}></Route>
         </>
       }
       <Route path='/*' element={<Navigate to='/*'></Navigate>}></Route>

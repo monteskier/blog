@@ -17,5 +17,5 @@ export const images = [
   {
     img:'img/imagen4.jpg',
     title:'Cuando sea...',
-    text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, iusto?'},
+    text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, iusto?'}
 ]

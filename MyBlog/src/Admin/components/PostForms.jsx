@@ -1,6 +1,6 @@
 export const PostForms = ({categories}=[]) => {
   return (
-    <form action="" className="nueva_entrada">
+    <form action="" className="nueva_entrada animate__animated animate__fadeIn">
       <div className="row">
         <div className="col-12">				
           <div className="d-flex gap-2 justify-content-end mb-3">

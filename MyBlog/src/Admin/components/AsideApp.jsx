@@ -6,7 +6,7 @@ export const AsideApp = ({options}) => {
     <div className="logo">
       <h2 className="py-4 m-0">Dashboard</h2>
     </div>
-    <nav className="menu d-flex d-sm-block justify-content-center flex-wrap">
+    <nav className="menu d-flex d-sm-block justify-content-center flex-wrap animate__animated animate__fadeIn">
       { options.posts
         ?
           options.posts.map( post =>{

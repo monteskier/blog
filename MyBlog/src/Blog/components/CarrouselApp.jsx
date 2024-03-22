@@ -5,14 +5,14 @@ export const CarrouselApp = ({images}) => {
   return (
     <>
       <div className="container">
-        <div className="row">
+        <div className="row animate__animated animate__fadeIn">
           <div className="col"></div>
             <div className="carousel slide carousel-fade" id="mi-carousel" data-bs-ride="carousel">
               <div className="carousel-inner">
                 {images.map((img, index) =>{
                     return(
                       
-                        <div className={index === 0 ? 'carousel-item active' : 'carousel-item' } data-bs-interval={index === 1 ? "3000" : ''} key={index}>
+                        <div className={index === 0 ? 'carousel-item active' : 'carousel-item' } data-bs-interval={index==1?'5000':null} key={index}>
                           <div className="carousel-caption">
                             <h5>{img.title}</h5>
                             <p>{img.text}</p>

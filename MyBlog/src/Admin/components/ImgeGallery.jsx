@@ -2,7 +2,7 @@
 
 export const ImgeGallery = () => {
   return (
-    <div  className="row d-flex justify-content-end align-items-center g-0 mt-3">
+    <div  className="row d-flex justify-content-end align-items-center g-0 mt-3 animate__animated animate__fadeIn">
       {itemData.map((item) => (
         <div className="col-4 g-0" key={item.img}>
           <img
