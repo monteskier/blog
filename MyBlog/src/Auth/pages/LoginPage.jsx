@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { AuthLayout } from "../layouts/AuthLayout"
 import { useForm } from '../../hooks/useForm'
-import { checkingAuthentication, startGoogleSignIn } from '../../store/slices/auth';
+import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/slices/auth';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  const { status } = useSelector( state => state.auth)
+  const { status, errorMessage } = useSelector( state => state.auth)
   const {email, password, onInputChange, formState} = useForm({
     email:'correu@server.com',
     password:'123456'
@@ -16,15 +16,17 @@ export const LoginPage = () => {
   const isAuthenticating = useMemo( ()=>status === 'checking', [status]);
 
   const onSubmit = (e)=>{
-    e.preventDefault();
-    console.log(formState);
-    dispatch(checkingAuthentication(email, password));
+    e.preventDefault();  
+    if(email.length< 1 && password.length < 1 ) return;
+    dispatch(startLoginWithEmailPassword({email, password}));
   }
 
   const onGoogleSignIn = ()=>{
     console.log('onGoogleSignIn');
     dispatch( startGoogleSignIn() );
   }
+
+  
 
   return (
     <AuthLayout title='Login'>
@@ -50,9 +52,13 @@ export const LoginPage = () => {
           </div>
         </div>
         <div className="row d-flex justify-content-between align-content-center">
+          
+          <div className="col-12 mt-2">
+            <div className="alert-danger">{errorMessage}</div>
+          </div>
           <div className="col-12 col-md-6 mt-2">
             <button
-              disabled={isAuthenticating} 
+              disabled={isAuthenticating}               
               type="submit"
               className="btn btn-secondary login_btn_submit"
               >Login
