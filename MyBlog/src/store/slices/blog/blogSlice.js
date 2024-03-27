@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {categories, posts} from '../../../Blog/helpers/blogPost'
+import {categories } from '../../../Blog/helpers/blogPost'
 import {images} from '../../../Blog/helpers/images'
 const initialState = {
-  posts:posts,
+  posts:[],
   images:images,
   categories:categories,
   isSaving:false,
@@ -41,7 +41,7 @@ export const blogSlice = createSlice({
     },
 
     setPosts:(state, action)=>{
-      state.posts = initialState.posts;
+      state.posts = action.payload;
     },
     setSavingPost:(state, action)=>{
 
@@ -57,14 +57,14 @@ export const blogSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {  
+  addNewEmptyPost,
+  deletePostById,
   savingNewPost,
   selectCategory,                
-  addNewEmptyPost,
   setActivePost,
   setPosts,
   setSavingPost,
   updatePost,
-  deletePostById,
 } = blogSlice.actions
 
 export default blogSlice

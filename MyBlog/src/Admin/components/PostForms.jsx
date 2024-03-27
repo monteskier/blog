@@ -1,6 +1,14 @@
+import {useDispatch, useSelector} from 'react-redux';
+import { useForm } from '../../hooks/useForm';
+
+
 export const PostForms = ({categories}=[]) => {
+const { active } = useSelector(state => state.blog);
+const { title, id, description, img, category, featured, formState, onInputChange  } = useForm({active});
+
   return (
     <form action="" className="nueva_entrada animate__animated animate__fadeIn">
+      <h3>{id}</h3>
       <div className="row">
         <div className="col-12">				
           <div className="d-flex gap-2 justify-content-end mb-3">
@@ -10,23 +18,29 @@ export const PostForms = ({categories}=[]) => {
         </div>
       </div>
       <div className="row">
-        <div className="form-floating mb-3">
-          <input type="text" className="form-control" id="title" name="title" placeholder="Titulo de la entrada" />
-          <label  htmlFor="title">Titulo</label>
-        </div>
-        <div className="form-floating mb-3">
-          <select className="form-select" name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
-            {categories.map( category =>{
-              return(
-                <option key={category.id} value={category.id}>{category.title}</option>
-              );
-            })}
-          </select>
-          <label  htmlFor="category">Categoria</label>
-        </div>
-        <div className="form-floating mb-3">
-          <textarea className="form-control" id="description" name="description" placeholder="Contenido de la entrada" />
-          <label  htmlFor="description">Contenido</label>
+        <div className="col-12">
+          <div className="form-floating mb-3">
+            <input type="text" value={title} className="form-control" id="title" name="title" onChange={onInputChange} placeholder="Titulo de la entrada" />
+            <label  htmlFor="title">Titulo</label>
+          </div>
+          <div className="form-floating mb-3">
+            <select className="form-select" onChange={onInputChange} name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
+              {categories.map( category =>{
+                return(
+                  <option key={category.id} value={category.id}>{category.title}</option>
+                );
+              })}
+            </select>
+            <label  htmlFor="category">Categoria</label>
+          </div>
+          <div className="form-floating mb-3">
+            <textarea onChange={onInputChange} value={description} className="form-control" id="description" name="description" placeholder="Contenido de la entrada" />
+            <label  htmlFor="description">Contenido</label>
+          </div>
+          <div className="form-check form-switch mb-3">
+            <label htmlFor="featured" className="form-check-label">Destacado</label>
+            <input type="checkbox" name="featured" className="form-check-input" id="featured" />
+          </div>
         </div>
         <div className="d-flex justify-content-end">
           <button>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FirebaseAuth } from "../firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import { login, logout } from "../store/slices/auth";
+import { startLoadingPosts } from "../store/slices/blog";
 
 export const useCheckAuth = ()=>{
   const {status} = useSelector(state => state.auth);
@@ -16,6 +17,7 @@ export const useCheckAuth = ()=>{
       
       const {uid, email, displayName, photoURL} = user;
       dispatch(login({uid, email, photoURL, displayName}))
+      dispatch(startLoadingPosts());
 
     } );
   },[]);

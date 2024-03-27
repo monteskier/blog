@@ -6,5 +6,8 @@ export const store = configureStore({
   reducer:{ 
     'blog': blogSlice.reducer ,
     'auth': authSlice.reducer
-  }
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+})
 })

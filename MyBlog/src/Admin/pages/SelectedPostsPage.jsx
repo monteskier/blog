@@ -1,12 +1,12 @@
 import { useReducer } from "react"
 import { DashboardLayout } from "../layouts/DashboardLayout"
-import { PostSelectedView } from "../views";
+import { NothingSelectedView, PostSelectedView } from "../views";
 import { useDispatch, useSelector } from "react-redux";
 import { startNewPost } from "../../store/slices/blog";
 
 export const SelectedPostsPage = () => {
   const dispatch = useDispatch();
-  const {posts, categories, isSaving} = useSelector( state => state.blog);
+  const {posts, categories, isSaving, active} = useSelector( state => state.blog);
   // TODO cojer todas las entradas del blog, y pasarlas al options
   const onAddPost = ()=>{
     dispatch(startNewPost());
@@ -14,9 +14,15 @@ export const SelectedPostsPage = () => {
 
   return (
     <DashboardLayout options={ {'posts':posts } } title='Entradas' >
-      <PostSelectedView categories={categories}>
-      </PostSelectedView>
 
+      {(active)
+        ?
+        <PostSelectedView categories={categories}>
+        </PostSelectedView>
+        :
+        <NothingSelectedView></NothingSelectedView>
+      }
+      
       {/* todo: que solo salga el boton de add en casa no NothingSelectedView */}
       <div className="">
         <button 

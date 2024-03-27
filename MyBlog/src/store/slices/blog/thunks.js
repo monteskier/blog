@@ -1,14 +1,14 @@
 import {doc, setDoc, collection} from 'firebase/firestore/lite'
 import { FirebaseDB } from '../../../firebase/config';
-import { addNewEmptyPost, savingNewPost, setActivePost } from './blogSlice';
+import { addNewEmptyPost, savingNewPost, setActivePost, setPosts } from './blogSlice';
+import { loadNotes } from '../../../Admin/helpers/loadPosts';
 
 export const startNewPost = ()=>{
   return async(dispatch, getState) =>{
     const {uid} = getState().auth;
     dispatch(savingNewPost()); //canvia el stado isSaving a true
     //uid
-    const newPost = {
-          id:null,    
+    const newPost = {  
           title: null,
           description: null,
           user:uid,
@@ -27,5 +27,13 @@ export const startNewPost = ()=>{
     dispatch(setActivePost(newPost));
     //dispatch(newNote)
     //dispatch(activeNote)
+  }
+
+};
+
+export const startLoadingPosts = ()=>{
+  return async(dispatch, getState)=>{
+    const posts = await loadNotes();
+    dispatch(setPosts(posts))
   }
 }
