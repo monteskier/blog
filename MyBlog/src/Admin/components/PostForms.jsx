@@ -1,11 +1,13 @@
 import {useDispatch, useSelector} from 'react-redux';
 import { useForm } from '../../hooks/useForm';
+import { useState } from 'react';
 
 
 export const PostForms = ({categories}=[]) => {
 const { active } = useSelector(state => state.blog);
-const { title, id, description, img, category, featured, formState, onInputChange  } = useForm({active});
+const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured  } = useForm(active);
 
+console.log(typeof(featured));
   return (
     <form action="" className="nueva_entrada animate__animated animate__fadeIn">
       <h3>{id}</h3>
@@ -25,9 +27,10 @@ const { title, id, description, img, category, featured, formState, onInputChang
           </div>
           <div className="form-floating mb-3">
             <select className="form-select" onChange={onInputChange} name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
-              {categories.map( category =>{
+              {categories.map( cat =>{
                 return(
-                  <option key={category.id} value={category.id}>{category.title}</option>
+                  
+                  <option key={cat.id} value={cat.id} defaultValue={category === cat.id}>{cat.title}</option>
                 );
               })}
             </select>
@@ -39,7 +42,7 @@ const { title, id, description, img, category, featured, formState, onInputChang
           </div>
           <div className="form-check form-switch mb-3">
             <label htmlFor="featured" className="form-check-label">Destacado</label>
-            <input type="checkbox" name="featured" className="form-check-input" id="featured" />
+            <input type="checkbox" name="featured" id="featured" checked={featured} onChange={setFeatured} className="form-check-input"  />
           </div>
         </div>
         <div className="d-flex justify-content-end">

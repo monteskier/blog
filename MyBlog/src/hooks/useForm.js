@@ -39,12 +39,24 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
   const onResetForm = ()=>{
     setFormState(initialForm);
   }
+  const setFeatured = ({target})=>{
+    
+    const {name, checked} = target;
+       console.log(`ipe! = ${JSON.parse(checked)}`);
+   
+      setFormState({
+       ...formState,
+       [ name ]:(!!checked)
+      });
+     
+  }
 
   return {
     ...formState,
     formState,
     onInputChange,
     onResetForm,
+    setFeatured,
 
     ...formValidation,
     isFormValid
