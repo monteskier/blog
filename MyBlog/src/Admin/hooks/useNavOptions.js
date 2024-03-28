@@ -5,11 +5,8 @@ export const useNavOptions = (postsMenu) => {
   const dispatch = useDispatch();
   const {posts} = useSelector( state=> state.blog);
 
-  const handleClickPost =(id)=>{
-    console.log(id);
-    const selectedPost = posts.filter( post => post.id === id );
-    dispatch(setActivePost(selectedPost));
-
+  const handleClickPost =(post)=>{        
+    dispatch(setActivePost(post));
   }
   return ({
     postsMenu,

@@ -10,17 +10,12 @@ export const loadNotes = async(categories)=>{
 
   docs.forEach(doc =>{
     for (const cat of categories) {
-      if(cat.id.trim() == doc.data().category.trim()){
+      if(cat.id == doc.data().category){
         posts.push({...doc.data(),'category_title':cat.title, 'id':doc.id })
         console.log('coincidesncias!!');
-        console.log(`categoria id=${cat.id} y doc.category = ${doc.data().category}`);
+        console.log(`categoria id=${cat.id} y doc.category = ${doc.data().category}`);        
         break;
-      }else{
-        posts.push({...doc.data(), 'id':doc.id });      
-        console.log('no coincidesncias');
-        console.log(`categoria id=${cat.id} y doc.category = ${doc.data().category}`);
-        break;
-      }
+        }      
     }              
   });
   
