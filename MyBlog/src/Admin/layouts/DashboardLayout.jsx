@@ -1,6 +1,6 @@
 import { AsideApp, NavBarApp } from "../components"
 
-export const DashboardLayout = ({children, title='', options={posts:null}}) => {
+export const DashboardLayout = ({children, title='', options={'postsMenu':false} }) => {
   return (
     <>
     

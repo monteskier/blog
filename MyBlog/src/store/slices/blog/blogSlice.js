@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {categories } from '../../../Blog/helpers/blogPost'
 import {images} from '../../../Blog/helpers/images'
 const initialState = {
   posts:[],
   images:images,
-  categories:categories,
+  categories:[],
   isSaving:false,
   messageSaved:'',
   active:null,
@@ -29,7 +28,7 @@ export const blogSlice = createSlice({
       state.isSaving = true;
     },
     selectCategory: (state, action) => {
-        this.setPosts();
+        
         state.posts = state.posts.filter((post) => (post.category) == (action.payload));
     },
     addNewEmptyPost:(state, action)=>{
@@ -42,6 +41,9 @@ export const blogSlice = createSlice({
 
     setPosts:(state, action)=>{
       state.posts = action.payload;
+    },
+    setCategories:(state, action)=>{
+      state.categories = action.payload;
     },
     setSavingPost:(state, action)=>{
 
@@ -63,6 +65,7 @@ export const {
   selectCategory,                
   setActivePost,
   setPosts,
+  setCategories,
   setSavingPost,
   updatePost,
 } = blogSlice.actions

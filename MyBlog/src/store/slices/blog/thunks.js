@@ -1,7 +1,7 @@
 import {doc, setDoc, collection} from 'firebase/firestore/lite'
 import { FirebaseDB } from '../../../firebase/config';
-import { addNewEmptyPost, savingNewPost, setActivePost, setPosts } from './blogSlice';
-import { loadNotes } from '../../../Admin/helpers/loadPosts';
+import { addNewEmptyPost, savingNewPost, setActivePost, setCategories, setPosts } from './blogSlice';
+import { loadCategories, loadNotes, loadPostsByCategory } from '../../../Admin/helpers/loadPosts';
 
 export const startNewPost = ()=>{
   return async(dispatch, getState) =>{
@@ -20,8 +20,7 @@ export const startNewPost = ()=>{
 
     const newDoc = doc( collection(FirebaseDB, `/posts/`) );
     const setDocResp = await setDoc(newDoc, newPost);
-
-    console.log({newDoc, setDocResp})
+    
     newPost.id = newDoc.id;
     dispatch(addNewEmptyPost(newPost));
     dispatch(setActivePost(newPost));
@@ -33,7 +32,21 @@ export const startNewPost = ()=>{
 
 export const startLoadingPosts = ()=>{
   return async(dispatch, getState)=>{
-    const posts = await loadNotes();
+    const posts = await loadNotes(getState().blog.categories);
     dispatch(setPosts(posts))
+  }
+}
+
+export const startLoadingCategories =  ()=>{
+  return async(dispatch) =>{
+    const categories = await loadCategories();
+    dispatch(setCategories(categories));
+  }
+}
+
+export const startLoadingPostsByCategory = (id)=>{
+  return async(dispatch)=>{
+    const posts = await loadPostsByCategory(id);
+    dispatch(setPosts(posts));
   }
 }

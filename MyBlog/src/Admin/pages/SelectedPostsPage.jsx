@@ -13,11 +13,11 @@ export const SelectedPostsPage = () => {
   }
 
   return (
-    <DashboardLayout options={ {'posts':posts } } title='Entradas' >
+    <DashboardLayout options={ {'postsMenu': true } } title='Entradas' >
 
       {(active)
         ?
-        <PostSelectedView categories={categories}>
+        <PostSelectedView>
         </PostSelectedView>
         :
         <NothingSelectedView></NothingSelectedView>

@@ -1,8 +1,7 @@
 
 
 export const FeaturedPostApp = ({posts=[], categories=[]}) => {
-
-  
+   
   return (
     <>
     <div className="container">
@@ -14,7 +13,8 @@ export const FeaturedPostApp = ({posts=[], categories=[]}) => {
                 <div  key={post.id} className="col-12 col-md-6 animate__animated animate__fadeIn">
                   <div className="card d-flex flex-md-row overflow-hidden">
                     <div className="card-body col-8">
-                      <strong className="text-primary d-inline-block mb-2">{categories[post.category].title}</strong>
+                      {/* TODO: que los posts tengan los titulos de sus categorias, hacer en loadPots mejor... */}
+                      <strong className="text-primary d-inline-block mb-2">{post.category_title}</strong>
                       <h3>{post.title}</h3>
                       <p className="mb-1 text-muted">Nov 12</p>
                       <p className="card-text">

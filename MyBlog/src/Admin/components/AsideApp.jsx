@@ -1,18 +1,22 @@
 
 import {Link} from 'react-router-dom'
 import { NavItem } from './NavItem'
+import { useNavOptions } from '../hooks'
 export const AsideApp = ({options}) => {
+
+  const {postsMenu, posts, handleClickPost} = useNavOptions(options.postsMenu);
+  
   return (   
     <aside className="barra-lateral col-12 col-sm-auto p-0">
     <div className="logo">
       <h2 className="py-4 m-0">Dashboard</h2>
     </div>
     <nav className="menu d-flex d-sm-block justify-content-center flex-wrap animate__animated animate__fadeIn">
-      { options.posts
-        ?
-          options.posts.map( (post, index )=>{
+      {
+        postsMenu?
+          posts.map( (post, index )=>{
             return(
-              <NavItem key={`navitem_${index}`} post={post}></NavItem>
+              <NavItem key={`navitem_${index}`} onClickPost={handleClickPost} post={post}></NavItem>
             )
           })
         :

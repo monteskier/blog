@@ -4,7 +4,7 @@ import '../styles/dashboardStyles.css'
 export const DashboardApp = () => {
 
   return (
-		<DashboardLayout>
+		<DashboardLayout options={ {'postsMenu': false } }>
 			{/* Con post seleccionado o nuevo post */}
 				{/* <OptionSelectedView></OptionSelectedView> */}
 			{/*TODO: Cuando no hay nada selccionado */}
