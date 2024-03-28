@@ -7,7 +7,7 @@ import { useForm } from '../../hooks/useForm';
 export const PostForms = () => {
 const { active, categories } = useSelector(state => state.blog);
 const dispatch = useDispatch();
-const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured, onSelectChange  } = useForm(active);
+const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured } = useForm(active);
 
 const dateString = useMemo( ()=>{
   const newDate = new Date(date);
