@@ -9,11 +9,11 @@ export const startNewPost = ()=>{
     dispatch(savingNewPost()); //canvia el stado isSaving a true
     //uid
     const newPost = {  
-          title: null,
-          description: null,
+          title: '',
+          description: '',
           user:uid,
-          img: null, //https:foto1.jpg, etc...
-          category: null,
+          img: [], //https:foto1.jpg, etc...
+          category:'',
           featured: false,
           date:new Date().getTime(),
     }

@@ -18,7 +18,10 @@ export const FeaturedPostApp = ({posts=[], categories=[]}) => {
                       <h3>{post.title}</h3>
                       <p className="mb-1 text-muted">Nov 12</p>
                       <p className="card-text">
-                        { post.description.length > 75 ? `${post.description.substring(0,75)}...` : post.description }
+                       { post.description ?
+                          post.description.length > 75 ? `${post.description.substring(0,75)}...` : post.description 
+                        :<></>
+                       } 
                       </p>
                       <a href="#" className="stretched-link">Continuar Leyendo ...</a>
                     </div>
