@@ -46,10 +46,18 @@ export const blogSlice = createSlice({
       state.categories = action.payload;
     },
     setSavingPost:(state, action)=>{
-
+      state.isSaving = true;
+      //TODO:mensaje de error...
     },
     updatePost:(state, action)=>{
-
+      state.isSaving = false;
+      state.posts = state.posts.map( (post)=>{
+        if(post.id == action.payload.id){
+          return action.payload;
+        }
+          return post;        
+      });
+      // TODO: Mostrar mensaje de actualizacion...
     },
     deletePostById:(state, action)=>{
 

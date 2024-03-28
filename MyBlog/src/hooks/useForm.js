@@ -55,13 +55,25 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
      
   }
 
+  const onSelectChange =({target})=>{
+    console.log({target});
+    const {name, selectedOptions} = target;
+    const value = selectedOptions[0].value;
+
+    setFormState({
+      ...formState,
+      [ name ]:value
+    });
+
+  }
+
   return {
     ...formState,
     formState,
     onInputChange,
     onResetForm,
     setFeatured,
-
+    onSelectChange,
     ...formValidation,
     isFormValid
   }

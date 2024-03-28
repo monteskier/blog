@@ -1,6 +1,6 @@
 import {doc, setDoc, collection} from 'firebase/firestore/lite'
 import { FirebaseDB } from '../../../firebase/config';
-import { addNewEmptyPost, savingNewPost, setActivePost, setCategories, setPosts } from './blogSlice';
+import { addNewEmptyPost, savingNewPost, setActivePost, setCategories, setPosts, setSavingPost, updatePost } from './blogSlice';
 import { loadCategories, loadNotes, loadPostsByCategory } from '../../../Admin/helpers/loadPosts';
 
 export const startNewPost = ()=>{
@@ -49,4 +49,17 @@ export const startLoadingPostsByCategory = (id)=>{
     const posts = await loadPostsByCategory(id);
     dispatch(setPosts(posts));
   }
+}
+export const startSavingPost = ()=>{
+    return async (dispatch, getState)=>{
+      dispatch(setSavingPost());
+      const {active} = getState().blog;      
+      const postToFireStore = {...active};
+      delete postToFireStore.id;
+
+      console.log(postToFireStore);
+      const docRef = doc(FirebaseDB,`posts/${active.id}`);
+      await setDoc(docRef, postToFireStore, {merge:true});
+      dispatch(updatePost(active));
+    }
 }

@@ -1,18 +1,28 @@
+import { useMemo, useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {setActivePost, startSavingPost} from '../../store/slices/blog'
 import { useForm } from '../../hooks/useForm';
-import { useMemo, useState } from 'react';
 
 
-export const PostForms = ({categories}=[]) => {
-const { active } = useSelector(state => state.blog);
-const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured  } = useForm(active);
+export const PostForms = () => {
+const { active, categories } = useSelector(state => state.blog);
+const dispatch = useDispatch();
+const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured, onSelectChange  } = useForm(active);
+
 const dateString = useMemo( ()=>{
   const newDate = new Date(date);
   return newDate.toUTCString();
 
 },[date])
 
-console.log(typeof(featured));
+useEffect(()=>{
+  dispatch(setActivePost(formState));
+
+},[formState])
+
+const onSavePost =()=>{
+  dispatch(startSavingPost());
+}
   return (
     <form action="" className="nueva_entrada animate__animated animate__fadeIn">
       
@@ -20,7 +30,7 @@ console.log(typeof(featured));
       <div className="row">
         <div className="col-12">				
           <div className="d-flex gap-2 justify-content-end mb-3">
-            <button className="btn btn-primary" type="button">Guardar</button>
+            <button className="btn btn-primary" onClick={onSavePost} type="button">Guardar</button>
             <button className="btn btn-danger" type="button">Eliminar</button>
           </div>
         </div>
@@ -32,11 +42,12 @@ console.log(typeof(featured));
             <label  htmlFor="title">Titulo</label>
           </div>
           <div className="form-floating mb-3">
-            <select className="form-select" onChange={onInputChange} name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
+            <select value={category} className="form-select" onChange={onInputChange} name="category" id="category" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, ab!">
               {categories.map( cat =>{
                 return(
                   
                   <option key={cat.id} value={cat.id} defaultValue={category === cat.id}>{cat.title}</option>
+
                 );
               })}
             </select>
