@@ -1,16 +1,22 @@
 import {useDispatch, useSelector} from 'react-redux';
 import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 
 export const PostForms = ({categories}=[]) => {
 const { active } = useSelector(state => state.blog);
 const { title, id, description, date, img, category, featured, formState, onInputChange, setFeatured  } = useForm(active);
+const dateString = useMemo( ()=>{
+  const newDate = new Date(date);
+  return newDate.toUTCString();
+
+},[date])
 
 console.log(typeof(featured));
   return (
     <form action="" className="nueva_entrada animate__animated animate__fadeIn">
-      <h3>{id}</h3>
+      
+      <h5>Fecha:{dateString}</h5>
       <div className="row">
         <div className="col-12">				
           <div className="d-flex gap-2 justify-content-end mb-3">
